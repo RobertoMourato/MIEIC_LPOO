@@ -6,8 +6,8 @@ public class Rule {
     Monster_Rule monster_rule;
     WinCondition winCondition;
     LoseCondition loseCondition;
-    public Rule(DataBase dataBase)
-    {
+
+    public Rule(DataBase dataBase) {
         this.dataBase = dataBase;
         this.hero_rule = new Hero_Rule(dataBase);
         this.monster_rule = new Monster_Rule(dataBase);
@@ -15,17 +15,18 @@ public class Rule {
         this.loseCondition = new LoseCondition(dataBase);
     }
 
-    public DataBase check(KeyStroke key){
+    public DataBase check(KeyStroke key) {
         hero_rule.heroMovement(key);
         /*dataBase = hero_rule.getDataBase();*/
 
 
         return dataBase;
     }
-    public DataBase autocheck(){
+
+    public DataBase autocheck() {
 
         monster_rule.moveMonsters();
-       /* dataBase = monster_rule.getDataBase();*/
+        /* dataBase = monster_rule.getDataBase();*/
 
         return dataBase;
 

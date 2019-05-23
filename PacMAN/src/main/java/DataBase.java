@@ -7,16 +7,16 @@ public class DataBase {
     List<Field> fieldList = new ArrayList<>();
     Field currentField;
 
-    public DataBase(){
+    public DataBase() {
 
         //PacMan
         pacman = new Pacman();
 
         //Monster
-        Monster monster1 = new Monster(20,20);
-        Monster monster2 = new Monster(21,20);
-        Monster monster3 = new Monster(22,20);
-        Monster monster4 = new Monster(20,21);
+        Monster monster1 = new Monster(20, 20);
+        Monster monster2 = new Monster(21, 20);
+        Monster monster3 = new Monster(22, 20);
+        Monster monster4 = new Monster(20, 21);
         monsterList.add(monster1);
         monsterList.add(monster2);
         monsterList.add(monster3);

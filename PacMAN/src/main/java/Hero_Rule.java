@@ -9,28 +9,30 @@ public class Hero_Rule {
     DataBase dataBase;
     private List<Coin> coinsToRemove;
 
-    public Hero_Rule(DataBase dataBase)
-    {
+    public Hero_Rule(DataBase dataBase) {
         this.dataBase = dataBase;
         this.pacman = dataBase.getPacman();
         this.coinsToRemove = new ArrayList<Coin>();
     }
+
     public Position moveUp() {
         return new Position(pacman.getPosition().getX(), pacman.getPosition().getY() - 1);
     }
 
-    public Position moveDown(){
+    public Position moveDown() {
         return new Position(pacman.getPosition().getX(), pacman.getPosition().getY() + 1);
     }
-    public Position moveLeft(){
-        return new Position(pacman.getPosition().getX()-1, pacman.getPosition().getY());
+
+    public Position moveLeft() {
+        return new Position(pacman.getPosition().getX() - 1, pacman.getPosition().getY());
     }
-    public Position moveRight(){
-        return new Position(pacman.getPosition().getX()+1, pacman.getPosition().getY());
+
+    public Position moveRight() {
+        return new Position(pacman.getPosition().getX() + 1, pacman.getPosition().getY());
     }
-    public void heroMovement(KeyStroke key)
-    {
-        switch(key.getKeyType()){
+
+    public void heroMovement(KeyStroke key) {
+        switch (key.getKeyType()) {
 
             case ArrowUp:
                 moveHero(moveUp());
@@ -58,29 +60,27 @@ public class Hero_Rule {
         if (canHeroMove(position))
             pacman.setPosition(position);
 
-        for(Coin coin: dataBase.getCurrentField().getCoinList())
-        {
-            if(coin.getPosition().equals(position))
+        for (Coin coin : dataBase.getCurrentField().getCoinList()) {
+            if (coin.getPosition().equals(position))
                 coinsToRemove.add(coin);
 
         }
-        if(!coinsToRemove.isEmpty())
+        if (!coinsToRemove.isEmpty())
             retrieveCoins();
 
     }
 
-    private void retrieveCoins(){
+    private void retrieveCoins() {
         dataBase.getCurrentField().getCoinList().removeAll(coinsToRemove);
 
     }
 
-    public boolean canHeroMove(Position position)
-    {
-        for(Position wall: dataBase.getCurrentField().getPositions()) {
+    public boolean canHeroMove(Position position) {
+        for (Position wall : dataBase.getCurrentField().getPositions()) {
             if (wall.equals(position))
                 return false;
         }
-        if(0 < position.getX() && position.getX() < dataBase.getCurrentField().getWidth() && 0 < position.getY() && position.getY() < dataBase.getCurrentField().getHeight())
+        if (0 < position.getX() && position.getX() < dataBase.getCurrentField().getWidth() && 0 < position.getY() && position.getY() < dataBase.getCurrentField().getHeight())
             return true;
         else
             return false;

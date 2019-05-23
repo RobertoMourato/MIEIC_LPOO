@@ -1,6 +1,7 @@
 public class Pacman {
     Position position;
-    public Pacman(){
+
+    public Pacman() {
         position = new Position(10, 10);
 
     }

@@ -1,8 +1,9 @@
 public class Monster {
     Position position;
     Direction direction;
-    public Monster(int x, int y){
-        position = new Position(x,y);
+
+    public Monster(int x, int y) {
+        position = new Position(x, y);
         direction = Direction.Up;
     }
 

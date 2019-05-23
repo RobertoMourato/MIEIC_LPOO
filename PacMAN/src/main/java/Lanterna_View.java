@@ -21,29 +21,28 @@ public class Lanterna_View {
     protected Screen screen;
     protected TextGraphics graphics;
     protected DataBase dataBase;
-    protected  Rule rule;
+    protected Rule rule;
 
-        public Lanterna_View() throws IOException
-        {
-            try{
-                terminal = new DefaultTerminalFactory().createTerminal();
-                screen = new TerminalScreen(terminal);
+    public Lanterna_View() throws IOException {
+        try {
+            terminal = new DefaultTerminalFactory().createTerminal();
+            screen = new TerminalScreen(terminal);
 
 
-                screen.setCursorPosition(null);   // we don't need a cursor
-                screen.startScreen();             // screens must be started
-                screen.doResizeIfNecessary();     // resize screen if necessary
+            screen.setCursorPosition(null);   // we don't need a cursor
+            screen.startScreen();             // screens must be started
+            screen.doResizeIfNecessary();     // resize screen if necessary
 
-                graphics = screen.newTextGraphics();
-                dataBase = new DataBase();
-                rule = new Rule(dataBase);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+            graphics = screen.newTextGraphics();
+            dataBase = new DataBase();
+            rule = new Rule(dataBase);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-    public void draw() throws IOException {
+    }
+
+    synchronized public void draw() throws IOException {
         try {
             screen.clear();
 
@@ -54,15 +53,13 @@ public class Lanterna_View {
             graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(dataBase.getCurrentField().getWidth(), dataBase.getCurrentField().getHeight()), ' ');
 
             //Field
-            for(Position position: dataBase.getCurrentField().getPositions())
-            {
+            for (Position position : dataBase.getCurrentField().getPositions()) {
                 graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
                 graphics.enableModifiers(SGR.BOLD);
                 graphics.putString(new TerminalPosition(position.getX(), position.getY()), "X");
             }
 
-            for(Coin coin: dataBase.getCurrentField().getCoinList())
-            {
+            for (Coin coin : dataBase.getCurrentField().getCoinList()) {
                 graphics.setForegroundColor(TextColor.Factory.fromString("#FFF000"));
                 graphics.enableModifiers(SGR.BOLD);
                 graphics.putString(new TerminalPosition(coin.getPosition().getX(), coin.getPosition().getY()), "o");
@@ -75,8 +72,7 @@ public class Lanterna_View {
             graphics.putString(new TerminalPosition(dataBase.getPacman().getPosition().getX(), dataBase.getPacman().getPosition().getY()), "P");
 
             //Monster
-            for(Monster monster: dataBase.getMonsterList())
-            {
+            for (Monster monster : dataBase.getMonsterList()) {
                 graphics.setForegroundColor(TextColor.Factory.fromString("#000BF0"));
                 graphics.enableModifiers(SGR.BOLD);
                 graphics.putString(new TerminalPosition(monster.getPosition().getX(), monster.getPosition().getY()), "M");
@@ -90,68 +86,68 @@ public class Lanterna_View {
             e.printStackTrace();
         }
     }
-    public void processKey(KeyStroke key) throws IOException {
+
+    synchronized public void processKey(KeyStroke key) throws IOException {
 
         //HeroMovement.processKey(key);
-        /*dataBase =*/ rule.check(key);
+        /*dataBase =*/
+        rule.check(key);
     }
 
-        public void run() throws IOException{
-            //Look at Java Thread Daemon
-            Thread t = new Thread(){
-             @Override
-             public void run(){
-                 while(true){
-                     try {
-                         draw();
-                     } catch (IOException e) {
-                         e.printStackTrace();
-                         break;
-                     }
-                     rule.autocheck();
+    public void run() throws IOException {
+        //Look at Java Thread Daemon
+        Thread t = new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        draw();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        break;
+                    }
+                    rule.autocheck();
 
-                     try {
-                         Thread.sleep(100);
-                     } catch (InterruptedException e) {
-                         e.printStackTrace();
-                         break;
-                     }
-                     if(isInterrupted())
-                     {break;}
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        break;
+                    }
+                    if (isInterrupted()) {
+                        break;
+                    }
 
 
-                 }
-             }
+                }
+            }
 
-            };
-            t.start();
-            while(true) {
+        };
+        t.start();
+        while (true) {
 
 
             KeyStroke key = screen.readInput();
-                processKey(key);
+            processKey(key);
 
-            if(rule.winCondition.NoCoins()){
+            if (rule.winCondition.NoCoins()) {
                 System.out.println("you win");
-                break;}
-            if(rule.loseCondition.verifyMonsterCollisions())
-            {
+                break;
+            }
+            if (rule.loseCondition.verifyMonsterCollisions()) {
                 System.out.println("you lose");
-                break;}
+                break;
+            }
 
 
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
+            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
                 t.interrupt();
-                break;}
+                break;
+            }
             if (key.getKeyType() == KeyType.EOF) {
                 t.interrupt();
                 break;
             }
         }
-        }
-
-
-
-
-
+    }
 }

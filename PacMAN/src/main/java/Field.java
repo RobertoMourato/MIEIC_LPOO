@@ -4,23 +4,24 @@ import java.util.List;
 public class Field {
 
     protected List<Position> positions = new ArrayList<>();
-    protected  List<Coin> coinList = new ArrayList<>();
-    protected  int width;
-    protected  int height;
+    protected List<Coin> coinList = new ArrayList<>();
+    protected int width;
+    protected int height;
     protected int level;
-    public Field(){
+
+    public Field() {
         level = 0;
         width = 30;
         height = 23;
-        for(int x = 0; x<= width; x++){
+        for (int x = 0; x <= width; x++) {
 
-            positions.add(new Position(x,0));
-            positions.add(new Position(x,height));
+            positions.add(new Position(x, 0));
+            positions.add(new Position(x, height));
         }
 
-        for(int y = 1; y< height-1; y++){
-            positions.add(new Position(0,y));
-            positions.add(new Position(width,y));
+        for (int y = 1; y < height - 1; y++) {
+            positions.add(new Position(0, y));
+            positions.add(new Position(width, y));
 
         }
       /*  for(int x = 0; x < width; x++)
