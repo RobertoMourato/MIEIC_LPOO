@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Monster_Rule {
+public class MonsterRule {
     List<Monster> monsterList;
     DataBase dataBase;
 
-    public Monster_Rule(DataBase dataBase) {
+    public MonsterRule(DataBase dataBase) {
         this.dataBase = dataBase;
         this.monsterList = dataBase.getMonsterList();
     }

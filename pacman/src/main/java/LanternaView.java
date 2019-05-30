@@ -109,12 +109,12 @@ public class LanternaView {
                     rule.autocheck();
 
                     if (rule.winCondition.NoCoins()) {
-                        System.out.println("you win");
+                        System.out.println("You win!!");
                         break;
                     }
 
                     if (rule.loseCondition.verifyMonsterCollisions()) {
-                        System.out.println("you lose");
+                        System.out.println("You lose!!");
                         break;
                     }
 

@@ -3,14 +3,14 @@ import com.googlecode.lanterna.input.KeyStroke;
 public class Rule {
     DataBase dataBase;
     HeroRule hero_rule;
-    Monster_Rule monster_rule;
+    MonsterRule monster_rule;
     WinCondition winCondition;
     LoseCondition loseCondition;
 
     public Rule(DataBase dataBase) {
         this.dataBase = dataBase;
         this.hero_rule = new HeroRule(dataBase);
-        this.monster_rule = new Monster_Rule(dataBase);
+        this.monster_rule = new MonsterRule(dataBase);
         this.winCondition = new WinCondition(dataBase);
         this.loseCondition = new LoseCondition(dataBase);
     }
