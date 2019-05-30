@@ -4,12 +4,12 @@ import com.googlecode.lanterna.input.KeyType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hero_Rule {
+public class HeroRule {
     Pacman pacman;
     DataBase dataBase;
     private List<Coin> coinsToRemove;
 
-    public Hero_Rule(DataBase dataBase) {
+    public HeroRule(DataBase dataBase) {
         this.dataBase = dataBase;
         this.pacman = dataBase.getPacman();
         this.coinsToRemove = new ArrayList<Coin>();

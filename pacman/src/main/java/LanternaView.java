@@ -16,16 +16,16 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import java.text.ParseException;
 
-public class Lanterna_View {
+public class LanternaView {
     protected Terminal terminal;
     protected Screen screen;
     protected TextGraphics graphics;
     protected DataBase dataBase;
     protected Rule rule;
 
-    public Lanterna_View() throws IOException {
+    public LanternaView() throws IOException {
         try {
-            terminal = new DefaultTerminalFactory().createTerminal();
+            terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(31, 24)).createTerminal();
             screen = new TerminalScreen(terminal);
 
 
