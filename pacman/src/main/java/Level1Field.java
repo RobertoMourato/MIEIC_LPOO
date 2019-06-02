@@ -151,6 +151,10 @@ public class Level1Field  extends Field{
             positions.add(position2);
 
         }
+
+        Power power = new Power(16,15);
+        this.powerList.add(power);
+
         //Until Here
         for(int x = 0; x <= width; x++)
         {
@@ -161,7 +165,7 @@ public class Level1Field  extends Field{
                 {
                     continue;
                 }
-                else if((x==10&&y==10)||(x==20&&y==20)||(x==20&&y==21)||(x==21&&y==20)||(x==22&&y==20))
+                else if((x==10&&y==10)||(x==20&&y==20)||(x==20&&y==21)||(x==21&&y==20)||(x==22&&y==20)||(x==16&&y==15))
                 {
                     continue;
                 }

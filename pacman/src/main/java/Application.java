@@ -9,9 +9,9 @@ public class Application {
         Scanner S = new Scanner(System.in);
 
 
-        boolean runMenu=true;
+        boolean runMenu = true;
 
-        while(runMenu) {
+        while (runMenu) {
             System.out.println("Menu:");
             System.out.println("1: Use Lanterna");
             System.out.println("2: Use Swing View");
@@ -32,7 +32,7 @@ public class Application {
 
                 case 3:
                     System.out.println("Bye");
-                    runMenu=false;
+                    runMenu = false;
 
                     break;
                 default:
@@ -42,7 +42,6 @@ public class Application {
 
             }
         }
-
 
 
     }

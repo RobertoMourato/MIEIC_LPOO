@@ -7,7 +7,7 @@ public class LoseCondition {
 
     public boolean verifyMonsterCollisions() {
         for (Monster monster : dataBase.getMonsterList()) {
-            if (monster.getPosition().equals(dataBase.getPacman().getPosition()))
+            if (monster.getPosition().equals(dataBase.getPacman().getPosition())&&(!dataBase.powerfull))
                 return true;
         }
         return false;

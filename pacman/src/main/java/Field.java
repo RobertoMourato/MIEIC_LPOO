@@ -4,6 +4,7 @@ import java.util.List;
 public class Field {
 
     protected List<Position> positions = new ArrayList<>();
+    protected List<Power> powerList = new ArrayList<>();
     protected List<Coin> coinList = new ArrayList<>();
     protected int width;
     protected int height;
@@ -35,7 +36,7 @@ public class Field {
                 }
                 else if(positions.contains(new Position(10,10)))
                 {
-                    break;
+                    break;protected List<Position> positions = new ArrayList<>();
                 }
                 else if(positions.contains(new Position(20,20))||positions.contains(new Position(20,21))||positions.contains(new Position(21,20))||positions.contains(new Position(22,20)))
                 {
@@ -56,6 +57,10 @@ public class Field {
 
     public List<Position> getPositions() {
         return positions;
+    }
+
+    public List<Power> getPowerList() {
+        return powerList;
     }
 
     public List<Coin> getCoinList() {

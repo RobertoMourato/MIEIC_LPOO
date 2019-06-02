@@ -3,14 +3,20 @@ import java.util.List;
 
 public class DataBase {
     Pacman pacman;
+    boolean powerfull;
     List<Monster> monsterList = new ArrayList<>();
     List<Field> fieldList = new ArrayList<>();
     Field currentField;
+
+    public void setPowerfull(boolean powerfull) {
+        this.powerfull = powerfull;
+    }
 
     public DataBase() {
 
         //PacMan
         pacman = new Pacman();
+        powerfull=false;
 
         //Monster
         Monster monster1 = new Monster(20, 20);

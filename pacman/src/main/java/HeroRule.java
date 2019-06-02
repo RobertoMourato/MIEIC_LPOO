@@ -8,11 +8,15 @@ public class HeroRule {
     Pacman pacman;
     DataBase dataBase;
     private List<Coin> coinsToRemove;
+    private List<Power> powerToRemove;
+    private List<Monster> monstersToRemove;
 
     public HeroRule(DataBase dataBase) {
         this.dataBase = dataBase;
         this.pacman = dataBase.getPacman();
         this.coinsToRemove = new ArrayList<Coin>();
+        this.powerToRemove = new ArrayList<Power>();
+        this.monstersToRemove = new ArrayList<Monster>();
     }
 
     public Position moveUp() {
@@ -56,22 +60,47 @@ public class HeroRule {
 
     public void moveHero(Position position) {
 
-
         if (canHeroMove(position))
             pacman.setPosition(position);
 
         for (Coin coin : dataBase.getCurrentField().getCoinList()) {
             if (coin.getPosition().equals(position))
                 coinsToRemove.add(coin);
-
         }
         if (!coinsToRemove.isEmpty())
             retrieveCoins();
 
+        for (Power power : dataBase.getCurrentField().getPowerList()) {
+            if (power.getPosition().equals(position)){
+                this.dataBase.setPowerfull(true);
+                powerToRemove.add(power);
+            }
+        }
+        if(!powerToRemove.isEmpty()){
+            retrievePower();
+        }
+
+        for (Monster monster : dataBase.getMonsterList()) {
+            if (monster.getPosition().equals(dataBase.getPacman().getPosition())&&dataBase.powerfull)
+                monstersToRemove.add(monster);
+        }
+        if(!monstersToRemove.isEmpty()){
+            retrieveMonsters();
+        }
     }
 
     private void retrieveCoins() {
         dataBase.getCurrentField().getCoinList().removeAll(coinsToRemove);
+
+    }
+
+    private void retrievePower() {
+        dataBase.getCurrentField().getPowerList().removeAll(powerToRemove);
+
+    }
+
+    private void retrieveMonsters() {
+        dataBase.getMonsterList().removeAll(monstersToRemove);
 
     }
 
