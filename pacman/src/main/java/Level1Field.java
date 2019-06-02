@@ -152,7 +152,7 @@ public class Level1Field  extends Field{
 
         }
 
-        Power power = new Power(16,15);
+        Power power = new Power(29,1);
         this.powerList.add(power);
 
         //Until Here
