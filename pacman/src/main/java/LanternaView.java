@@ -67,7 +67,7 @@ public class LanternaView {
             }
 
             for (Power power : dataBase.getCurrentField().getPowerList()){
-                graphics.setForegroundColor(TextColor.Factory.fromString("#00F00F"));
+                graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));
                 graphics.enableModifiers(SGR.BOLD);
                 graphics.putString(new TerminalPosition(power.getPosition().getX(), power.getPosition().getY()), "0");
             }

@@ -120,6 +120,11 @@ public class Display extends JPanel implements KeyListener, ActionListener {
 
         }
 
+        for (Power power : dataBase.getCurrentField().getPowerList()){
+            graphics.setColor(Color.RED);
+            graphics.fillRect(power.getPosition().getX()*30, power.getPosition().getY()*30, 30,30);
+        }
+
         //PacMan
         graphics.setColor(Color.GREEN);
         graphics. fillRect(dataBase.getPacman().getPosition().getX()*30,dataBase.getPacman().getPosition().getY()*30,30,30);
